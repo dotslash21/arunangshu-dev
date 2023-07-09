@@ -1,0 +1,33 @@
+---
+import Header from "../page/Header.astro"
+import Footer from "../page/Footer.astro"
+import SideBar from "../page/SideBar.astro"
+
+export interface Props {
+    author: string;
+    showSidebar?: boolean;
+    sideBarActiveItemId: string;
+}
+
+const { author, showSidebar, sideBarActiveItemId } = Astro.props;
+---
+
+<body>
+    <div class="bg-base-100 drawer lg:drawer-open">
+        <input id="sidebar-drawer" type="checkbox" class="drawer-toggle" />
+
+        <div class="drawer-content bg-base-100">
+            <Header author={author} />
+
+            <div class="md:flex md:justify-center">
+                <main class="p-6 pt-10 max-w-[900px]">
+                    <slot />
+                </main>
+            </div>
+
+            <Footer author={author} />
+        </div>
+
+        { showSidebar && <SideBar sideBarActiveItemId={sideBarActiveItemId} /> }
+    </div>
+</body>

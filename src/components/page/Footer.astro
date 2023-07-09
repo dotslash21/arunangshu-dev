@@ -1,0 +1,22 @@
+---
+const today = new Date();
+
+export interface Props {
+    author: string;
+}
+
+const { author } = Astro.props;
+---
+
+<footer class="footer footer-center block mb-5 pt-10">
+    <div class="pb-2">
+        &copy; {today.getFullYear()}
+        {author}
+    </div>
+    <div class="inline opacity-75">
+        Developed by 
+        <a href="https://github.com/dotslash21" target="_blank" class="font-bold">
+            dotslash21 🧑‍💻
+        </a>
+    </div>
+</footer>

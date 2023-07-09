@@ -1,0 +1,21 @@
+---
+import SideBarImage from "../sidebar/SideBarImage.astro";
+import SideBarMenu from "../sidebar/SideBarMenu.astro";
+import SideBarFooter from "../sidebar/SideBarFooter.astro";
+
+export interface Props {
+    sideBarActiveItemId: string;
+}
+
+const { sideBarActiveItemId } = Astro.props;
+---
+
+<div class="drawer-side z-20">
+    <label for="sidebar-drawer" class="drawer-overlay"></label>
+
+    <aside class="px-2 pt-2 h-auto min-h-full w-[19rem] bg-base-200 text-base-content flex flex-col">
+        <SideBarImage />
+        <SideBarMenu sideBarActiveItemId={sideBarActiveItemId} />
+        <SideBarFooter />
+    </aside>
+</div>

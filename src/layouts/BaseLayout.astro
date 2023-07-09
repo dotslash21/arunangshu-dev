@@ -1,0 +1,40 @@
+---
+import Head from "../components/layout/Head.astro";
+import Body from "../components/layout/Body.astro";
+
+import {
+    SITE_TITLE,
+    SITE_DESCRIPTION,
+    SITE_AUTHOR,
+    SITE_PREVIEW_IMAGE,
+} from "../config";
+
+export interface Props {
+    title?: string;
+    description?: string;
+    author?: string;
+    previewImage?: string;
+    showSidebar?: boolean;
+    sideBarActiveItemId: string;
+}
+
+const {
+    title = SITE_TITLE,
+    description = SITE_DESCRIPTION,
+    author = SITE_AUTHOR,
+    previewImage = SITE_PREVIEW_IMAGE,
+    showSidebar = true,
+    sideBarActiveItemId,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <Head title={title} description={description} previewImage={previewImage} />
+
+    <Body
+        author={author}
+        showSidebar={showSidebar}
+        sideBarActiveItemId={sideBarActiveItemId}
+    />
+</html>
