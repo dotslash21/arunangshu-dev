@@ -9,14 +9,25 @@ export interface Props {
     previewImage: string;
 }
 
-const {
-    title,
-    description,
-    previewImage,
-} = Astro.props;
+const { title, description, previewImage } = Astro.props;
 ---
 
 <head>
+    <script is:inline>
+        if (localStorage.getItem("theme") === null) {
+            document.documentElement.setAttribute("data-theme", "dracula");
+        } else {
+            document.documentElement.setAttribute(
+                "data-theme",
+                localStorage.getItem("theme")
+            );
+        }
+    </script>
+    <script>
+        import { themeChange } from "theme-change";
+        themeChange();
+    </script>
+
     <title>{title}</title>
 
     <!-- Global Metadata -->

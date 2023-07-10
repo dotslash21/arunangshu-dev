@@ -1,7 +1,7 @@
 ---
-import Header from "../page/Header.astro"
-import Footer from "../page/Footer.astro"
-import SideBar from "../page/SideBar.astro"
+import Header from "../page/Header.astro";
+import Footer from "../page/Footer.astro";
+import SideBar from "../page/SideBar.astro";
 
 export interface Props {
     author: string;
@@ -28,6 +28,6 @@ const { author, showSidebar, sideBarActiveItemId } = Astro.props;
             <Footer author={author} />
         </div>
 
-        { showSidebar && <SideBar sideBarActiveItemId={sideBarActiveItemId} /> }
+        {showSidebar && <SideBar sideBarActiveItemId={sideBarActiveItemId} />}
     </div>
 </body>

@@ -20,6 +20,9 @@ dependencies:
   tailwindcss:
     specifier: ^3.0.24
     version: 3.3.2
+  theme-change:
+    specifier: ^2.5.0
+    version: 2.5.0
 
 devDependencies:
   '@tailwindcss/typography':
@@ -3511,6 +3514,10 @@ packages:
       fs-constants: 1.0.0
       inherits: 2.0.4
       readable-stream: 3.6.2
+    dev: false
+
+  /theme-change@2.5.0:
+    resolution: {integrity: sha512-B/UdsgdHAGhSKHTAQnxg/etN0RaMDpehuJmZIjLMDVJ6DGIliRHGD6pODi1CXLQAN9GV0GSyB3G6yCuK05PkPQ==}
     dev: false
 
   /thenify-all@1.6.0:
