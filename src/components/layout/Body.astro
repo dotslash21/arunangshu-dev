@@ -1,12 +1,12 @@
 ---
 import Header from "../page/Header.astro";
 import Footer from "../page/Footer.astro";
-import SideBar from "../page/SideBar.astro";
+import SideBar from "../page/Sidebar.astro";
 
 export interface Props {
     author: string;
     showSidebar?: boolean;
-    sideBarActiveItemId: string;
+    sideBarActiveItemId?: string;
 }
 
 const { author, showSidebar, sideBarActiveItemId } = Astro.props;
@@ -14,7 +14,7 @@ const { author, showSidebar, sideBarActiveItemId } = Astro.props;
 
 <body>
     <div class="bg-base-100 drawer lg:drawer-open">
-        <input id="sidebar-drawer" type="checkbox" class="drawer-toggle" />
+        <input id="sidebar-drawer" name="sidebar-drawer" type="checkbox" class="drawer-toggle" />
 
         <div class="drawer-content bg-base-100">
             <Header author={author} />

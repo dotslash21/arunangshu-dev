@@ -4,7 +4,7 @@ import SideBarMenu from "../sidebar/SideBarMenu.astro";
 import SideBarFooter from "../sidebar/SideBarFooter.astro";
 
 export interface Props {
-    sideBarActiveItemId: string;
+    sideBarActiveItemId?: string;
 }
 
 const { sideBarActiveItemId } = Astro.props;

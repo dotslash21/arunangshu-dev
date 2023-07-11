@@ -2,7 +2,7 @@
 const ACTIVE_CLASS = "bg-base-300";
 
 export interface Props {
-    sideBarActiveItemId: string;
+    sideBarActiveItemId?: string;
 }
 
 const { sideBarActiveItemId } = Astro.props;
@@ -39,9 +39,11 @@ const { sideBarActiveItemId } = Astro.props;
 >
 const activeItemID = "{{ sideBarActiveItemId }}";
 
-const activeItem = document.getElementById(activeItemID);
+if (activeItemID) {
+    const activeItem = document.getElementById(activeItemID);
 
     if (activeItem) {
         activeItem.classList.add(ACTIVE_CLASS_NAME);
     }
+}
 </script>

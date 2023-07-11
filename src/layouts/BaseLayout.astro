@@ -15,7 +15,7 @@ export interface Props {
     author?: string;
     previewImage?: string;
     showSidebar?: boolean;
-    sideBarActiveItemId: string;
+    sideBarActiveItemId?: string;
 }
 
 const {
@@ -24,7 +24,7 @@ const {
     author = SITE_AUTHOR,
     previewImage = SITE_PREVIEW_IMAGE,
     showSidebar = true,
-    sideBarActiveItemId,
+    sideBarActiveItemId = undefined,
 } = Astro.props;
 ---
 
@@ -36,5 +36,7 @@ const {
         author={author}
         showSidebar={showSidebar}
         sideBarActiveItemId={sideBarActiveItemId}
-    />
+    >
+        <slot />
+    </Body>
 </html>
