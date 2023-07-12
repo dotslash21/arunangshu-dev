@@ -18,7 +18,7 @@ tags:
   - Inheritance
   - Polymorphism
 ---
-# Introduction
+## Introduction
 
 Once upon a time, programming was a mystic art! An art that could only be performed by the ones well versed in the way of computers. But this image of programming has long been changed. There are many tutorials out there both in texts and videos that make this art much easier to learn. One can learn any language and build their applications. But is that all? Or is there more to this than meets the eye?
 
@@ -62,7 +62,7 @@ The OOP paradigm is a vast field with many programming languages that have sligh
 
 I believe in the philosophy of *Learn by Doing*, where you learn about something by getting hands-on with it. I have recently completed some exercises at [Crio.Do](https://crio.do/) on the said concepts. Solving a real-world based problem using the learned concepts goes a long way by solidifying the intuition and the concept together.
 
-# Conclusion
+## Conclusion
 
 At the beginning of every programmer’s life, their first major project is a structural mess. Learning the basic **OOPS** concepts helps to introduce a structure to the code. But this is just the beginning of the journey. There are more stuff to learn like **SOLID** and **GRASP** principles and so on. This journey is a continuous evolution and has no real end. As the applications scale and the requirements change, there might arise a need for a new structure in the future. So staying updated is a crucial job for a developer in this ever-changing field of IT.
 

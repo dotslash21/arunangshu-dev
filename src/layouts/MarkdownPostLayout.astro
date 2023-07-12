@@ -1,13 +1,74 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import { Image } from "@astrojs/image/components";
+
 const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description}>
-    <h1>{frontmatter.title}</h1>
-    <p>{frontmatter.date.slice(0, 10)}</p>
-    <p><em>{frontmatter.description}</em></p>
-    <img src={frontmatter.thumbnail} width="300" alt={`Featured image for ${frontmatter.title}`} />
-    <slot />
-    {frontmatter.tags && <ul>{frontmatter.tags.map((tag: string) => <li>{tag}</li>)}</ul>}
+    <main class="md:flex md:justify-center">
+        <article class="prose prose-lg max-w-[750px=] prose-img:mx-auto">
+            <!-- hero image -->
+            {
+                frontmatter.featuredImage && (
+                    <Image
+                        aspectRatio={"16:9"}
+                        width={750}
+                        height={422}
+                        format={"webp"}
+                        src={frontmatter.featuredImage}
+                        alt={`Featured image for ${frontmatter.title}`}
+                        class="w-full mb-6"
+                    />
+                )
+            }
+
+            <!-- title -->
+            <h1 class="title my-2 text-4xl font-bold">{frontmatter.title}</h1>
+
+            <!-- date -->
+            {
+                frontmatter.date && (
+                    <p>
+                        Published on
+                        <time datetime={frontmatter.date}>
+                            {
+                                ((input: string) => {
+                                    const date = new Date(input);
+
+                                    const options = {
+                                        year: 'numeric' as const,
+                                        month: 'long' as const,
+                                        day: 'numeric' as const,
+                                        hour: '2-digit' as const,
+                                        minute: '2-digit' as const
+                                    };
+
+                                    return date.toLocaleDateString('en-US', options);
+                                })(frontmatter.date)
+                            }
+                        </time>
+                    </p>
+                )
+            }
+
+            <div class="divider my-2"></div>
+
+            <!-- content -->
+            <slot />
+
+            <!-- tags -->
+            {
+                frontmatter.tags && (
+                    <div class="flex flex-row flex-wrap gap-2 my-16">
+                        {
+                            frontmatter.tags.map(
+                                (tag: string) => <div class="badge badge-neutral p-3 cursor-pointer">{tag}</div>
+                            )
+                        }
+                    </div>
+                )
+            }
+        </article>
+    </main>
 </BaseLayout>
