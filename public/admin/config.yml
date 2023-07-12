@@ -17,7 +17,7 @@ collections:
     view_filters:
       - label: "Draft posts"
         field: "draft"
-        value: true
+        pattern: "true"
     view_groups:
       - label: "Year"
         field: "date"
