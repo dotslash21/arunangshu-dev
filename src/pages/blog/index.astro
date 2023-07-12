@@ -2,7 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogPostCard from "../../components/blog/BlogPostCard.astro";
 
-const allPosts = await Astro.glob("./posts/*.md");
+// const allPosts = await Astro.glob("./posts/*.md");
+const allPosts: { url: string, frontmatter: { title: string } }[] = [];  // Just to build successfully
 ---
 
 <BaseLayout title="Blog" sideBarActiveItemId="blog">
