@@ -1,0 +1,13 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+    <h1>{frontmatter.title}</h1>
+    <p>{frontmatter.date.slice(0, 10)}</p>
+    <p><em>{frontmatter.description}</em></p>
+    <img src={frontmatter.thumbnail} width="300" alt={`Featured image for ${frontmatter.title}`} />
+    <slot />
+    {frontmatter.tags && <ul>{frontmatter.tags.map((tag: string) => <li>{tag}</li>)}</ul>}
+</BaseLayout>

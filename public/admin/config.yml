@@ -8,24 +8,38 @@ media_folder: "public/images/uploads" # Media files will be stored in the repo u
 public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
 
 collections:
-  - name: "blog" 
-    label: "Blog" 
-    folder: "src/content/blog" 
+  - name: "blog"
+    label: "Blog"
+    folder: "src/pages/blog/posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "blog/posts/{{slug}}"
+    view_filters:
+      - label: "Draft posts"
+        field: "draft"
+        value: true
+    view_groups:
+      - label: "Year"
+        field: "date"
+        pattern: 'YYYY'
     fields:
       - label: "Layout"
         name: "layout"
         widget: "hidden"
-        default: "blog"
+        default: "../../../layouts/MarkdownPostLayout.astro"
+      - label: "Draft"
+        name: "draft"
+        widget: "boolean"
+        default: true
       - label: "Title"
         name: "title"
         widget: "string"
+        required: true
       - label: "Publish Date"
         name: "date"
         widget: "datetime"
       - label: "Featured Image"
-        name: "thumbnail"
+        name: "featuredImage"
         widget: "image"
       - label: "Description"
         name: "description"
@@ -33,6 +47,7 @@ collections:
       - label: "Tags"
         name: "tags"
         widget: "list"
+        default: []
       - label: "Body"
         name: "body"
         widget: "markdown"

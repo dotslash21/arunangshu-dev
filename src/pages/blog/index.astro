@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogPostCard from "../../components/blog/BlogPostCard.astro";
+
+const allPosts = await Astro.glob("./posts/*.md");
+---
+
+<BaseLayout title="Blog" sideBarActiveItemId="blog">
+    <div class="mb-5">
+        <div class="text-3xl w-full font-bold">Blog</div>
+
+        <ul>
+            {
+                allPosts.map((post) => (
+                    <BlogPostCard
+                        url={post.url}
+                        title={post.frontmatter.title}
+                    />
+                ))
+            }
+        </ul>
+    </div>
+</BaseLayout>
