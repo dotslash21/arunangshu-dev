@@ -1,5 +1,46 @@
 ---
-const { title, url } = Astro.props
+import { Image } from "@astrojs/image/components";
+
+export interface Props {
+    title: string;
+    featuredImage?: string;
+    description: string;
+    date: string;
+    tags: string[];
+    url?: string;
+}
+
+const { title, featuredImage, description, date, tags, url } = Astro.props;
 ---
 
-<li><a href={url}>{title}</a></li>
+<a href={url ? url : "#"}>
+    <div class="card card-normal lg:card-side bg-base-100 transition ease-in-out hover:shadow-xl hover:scale-[102%]">
+        <figure class="lg:basis-2/6">
+            {
+                featuredImage && (
+                    <Image
+                        src={featuredImage}
+                        aspectRatio={"16:9"}
+                        width={640}
+                        fit={"cover"}
+                        format="webp"
+                        alt="Featured Image for {title}"
+                        class="max-w-full md:max-w-[13rem] rounded-lg"
+                    />
+                )
+            }
+        </figure>
+
+        <div class="card-body lg:basis-4/6">
+            <h2 class="card-title">{title}</h2>
+            <p class="text-ellipsis">{description}</p>
+            <div class="card-actions justify-end mt-5">
+                {
+                    tags && (
+                        tags.map((tag) => <div class="badge badge-outline">{tag}</div>)
+                    )
+                }
+            </div>
+        </div>
+    </div>
+</a>
