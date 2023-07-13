@@ -36,7 +36,7 @@ collections:
         widget: "string"
         required: true
       - label: "Publish Date"
-        name: "date"
+        name: "pubDate"
         widget: "datetime"
       - label: "Featured Image"
         name: "featuredImage"
