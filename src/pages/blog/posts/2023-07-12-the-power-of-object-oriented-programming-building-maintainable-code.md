@@ -3,7 +3,7 @@ layout: ../../../layouts/MarkdownPostLayout.astro
 draft: false
 title: "The Power of Object-Oriented Programming: Building Maintainable Code"
 date: 2023-07-12T14:24:06.182Z
-featuredImage: https://miro.medium.com/v2/resize:fit:1100/format:webp/1*cYACGgCp35GlbGMoWdHaew.png
+featuredImage: /images/uploads/1_cyacggcp35glbgmowdhaew-1-.png
 description: "Explore the challenges of poor code structuring and the solution
   it demands: Object-Oriented Programming (OOP). Discover how OOP enhances
   simplicity, modularity, extensibility, and maintainability, and learn about
