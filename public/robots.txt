@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arunangshu.dev/sitemap-index.xml
