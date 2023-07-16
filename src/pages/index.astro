@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogPostCard from "../components/blog/BlogPostCard.astro";
+
+const allPosts = await Astro.glob("./blog/posts/*.md");
 ---
 
 <BaseLayout sideBarActiveItemId="home">
@@ -30,9 +33,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
     </div>
 
-    <div>
-        <div class="text-3xl w-full font-bold mb-5 mt-10">
-            My last projects 🧑‍💻
-        </div>
-    </div>
+    {
+        allPosts
+            .sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate))
+            .slice(0, 3)
+            .map((post) => (
+                <div>
+                    <BlogPostCard
+                        title={post.frontmatter.title}
+                        featuredImage={post.frontmatter.featuredImage}
+                        description={post.frontmatter.description}
+                        date={post.frontmatter.date}
+                        tags={post.frontmatter.tags}
+                        url={post.url}
+                    />
+                    <div class="divider my-0" />
+                </div>
+            ))
+    }
 </BaseLayout>
