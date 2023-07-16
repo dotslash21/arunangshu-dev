@@ -7,14 +7,13 @@ const { frontmatter } = Astro.props;
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description} sideBarActiveItemId="blog">
     <main class="md:flex md:justify-center">
-        <article class="prose prose-lg max-w-[750px=] prose-img:mx-auto">
+        <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
             <!-- hero image -->
             {
                 frontmatter.featuredImage && (
                     <Image
-                        aspectRatio={"16:9"}
+                        aspectRatio={"16:10"}
                         width={750}
-                        height={422}
                         format={"webp"}
                         src={frontmatter.featuredImage}
                         alt={`Featured image for ${frontmatter.title}`}
