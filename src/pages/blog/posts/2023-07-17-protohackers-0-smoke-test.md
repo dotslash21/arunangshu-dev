@@ -114,7 +114,7 @@ func RunServer() {
 	}
 }
 ```
-The `RunServer` function starts an infinite loop which listens for incoming connections on the specified port. If it encounters an error, it logs the error and terminates the program. If it successfully accepts a connection, it prints a log message stating that it has accepted the connection from the remote address, and calls the `handleConnection` function in a separate goroutine, passing the connection to it.
+The `RunServer` function starts an infinite loop that listens for incoming connections on the specified port. If it encounters an error, it logs the error and terminates the program. If it successfully accepts a connection, it prints a log message stating that it has accepted the connection from the remote address, and calls the `handleConnection` function in a separate goroutine, passing the connection to it.
 
 ```go
 func handleConnection(c net.Conn) {
