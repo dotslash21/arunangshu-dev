@@ -11,18 +11,20 @@ const allPosts = await Astro.glob("./posts/*.md");
     </div>
 
     {
-        allPosts.map((post) => (
-            <div>
-                <BlogPostCard
-                    title={post.frontmatter.title}
-                    featuredImage={post.frontmatter.featuredImage}
-                    description={post.frontmatter.description}
-                    date={post.frontmatter.date}
-                    tags={post.frontmatter.tags}
-                    url={post.url}
-                />
-                <div class="divider my-0" />
-            </div>
-        ))
+        allPosts
+            .sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate))
+            .map((post) => (
+                <div>
+                    <BlogPostCard
+                        title={post.frontmatter.title}
+                        featuredImage={post.frontmatter.featuredImage}
+                        description={post.frontmatter.description}
+                        date={post.frontmatter.date}
+                        tags={post.frontmatter.tags}
+                        url={post.url}
+                    />
+                    <div class="divider my-0" />
+                </div>
+            ))
     }
 </BaseLayout>
