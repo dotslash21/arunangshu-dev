@@ -1,6 +1,6 @@
 ---
 layout: ../../../layouts/MarkdownPostLayout.astro
-draft: true
+draft: false
 title: "Protohackers - 0: Smoke Test"
 pubDate: 2023-07-17T14:48:31.304Z
 featuredImage: /images/uploads/351000_series-of-matrix-like-0-and-1-digits-behind-smoke-_esrgan-v1-x2plus.png
