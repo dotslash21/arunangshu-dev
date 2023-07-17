@@ -39,10 +39,28 @@ func RunServer() {
             // Handle error
             log.Fatal(err)
         }
+
+        // Echo all incoming data.
+        for {
+            // Accept a TCP connection
+            conn, err := lst.Accept()
+            if err != nil {
+                // Handle error
+                log.Fatal(err)
+            }
+
+            log.Print("Accepted connection from ", conn.RemoteAddr().String())
+            go handleConnection(conn)
+        }
+    }
 }
 
 func handleConnection(c net.Conn) {
     defer c.Close()
+
+    io.Copy(c, c)
+
+    log.Print("Closing connection to ", c.RemoteAddr().String())
 }
 
 func main() {
@@ -63,43 +81,57 @@ import (
     "net"
 )
 ```
-In this section, the program is defining its package as main. This is the entry point for a standalone executable program in Go. It then imports several packages which it will use in the following code:
+This section specifies that the code is part of the `main` package, which is the default package for an executable Go program. Several libraries are then imported:
 
-- fmt: provides formatting for input and output.
-- io: provides basic functions to perform input and output operations. log: provides simple logging services.
-- net: provides a portable interface for network I/O, including TCP/IP, UDP, domain name resolution, and Unix domain sockets.
+-   `fmt`: This package contains functions for formatted I/O.
+-   `io`: This package provides basic interfaces to I/O primitives.
+-   `log`: This package provides simple logging services.
+-   `net`: This package provides a portable interface for network I/O, including TCP/IP, UDP, and Unix domain sockets.
 
 ```go
 var PORT = 80
 ```
-Here, a global variable `PORT` is declared and initialized to `80`. This represents the port number that the server will listen on for incoming TCP connections.
+Here a global variable `PORT` is declared and initialized to `80`. This is the port that the server will listen on for incoming connections.
 
 ```go
 func RunServer() {
 	for {
-		// Listen for incoming connections
 		log.Print("Listening on port ", PORT, " for incoming connections.")
 		lst, err := net.Listen("tcp", ":"+fmt.Sprint(PORT))
 		if err != nil {
-			// Handle error
 			log.Fatal(err)
 		}
+
+		for {
+			conn, err := lst.Accept()
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			log.Print("Accepted connection from ", conn.RemoteAddr().String())
+			go handleConnection(conn)
+		}
+	}
 }
 ```
-In this block, a function `RunServer` is defined. This function listens for incoming connections indefinitely. It's missing a close brace `}`, so the current form will result in a compile-time error.
-
-The `net.Listen` function is used to listen for incoming connections on the specified network and address. In this case, it's listening on `tcp` network at the port defined by `PORT`. If `net.Listen` encounters an error, it's logged and the program is terminated by `log.Fatal`.
+The `RunServer` function starts an infinite loop which listens for incoming connections on the specified port. If it encounters an error, it logs the error and terminates the program. If it successfully accepts a connection, it prints a log message stating that it has accepted the connection from the remote address, and calls the `handleConnection` function in a separate goroutine, passing the connection to it.
 
 ```go
 func handleConnection(c net.Conn) {
 	defer c.Close()
+
+	io.Copy(c, c)
+
+	log.Print("Closing connection to ", c.RemoteAddr().String())
 }
 ```
-This function is intended to handle a connection once it's established. `net.Conn` is an interface representing a network connection. The `defer` keyword is used to ensure that the `Close` method is called on the connection when the `handleConnection` function exits, regardless of how it exits.
+This function is used to handle a new connection. It uses the `defer` statement to ensure that the connection will be closed when the function exits, regardless of how it exits. It then copies data from the connection to itself, effectively echoing all incoming data back to the client. Once the connection is closed, a log message is printed to indicate this.
+
+> **_Note:_** `io.Copy(c, c)` is a simple echo operation. It copies data from the source (the connection itself) to the destination (again, the connection itself). So, whatever data the server receives from a client, it sends the same data back to the client.
 
 ```go
 func main() {
-	RunServer()
+    RunServer()
 }
 ```
-Finally, the `main` function is defined. This is the entry point for the executable program. It calls the `RunServer` function to start the server. The server will then listen indefinitely for incoming connections on the specified port.
+The `main` function is the entry point for the executable program. It simply calls the `RunServer` function to start the server. The server will then listen indefinitely for incoming connections on the specified port.
