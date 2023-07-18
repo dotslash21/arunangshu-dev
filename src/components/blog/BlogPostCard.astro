@@ -33,7 +33,9 @@ const { title, featuredImage, description, date, tags, url } = Astro.props;
 
         <div class="card-body lg:basis-4/6">
             <h2 class="card-title">{title}</h2>
-            <p class="text-ellipsis">{description}</p>
+            <div class="tooltip tooltip-bottom" data-tip={description}>
+                <p class="text-left line-clamp-3 min-h-[4.5em]">{description}</p>
+            </div>
             <div class="card-actions justify-end mt-5">
                 {
                     tags && (
